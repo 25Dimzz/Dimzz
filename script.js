@@ -1,162 +1,100 @@
-// Theme Toggle
-const themeBtn = document.getElementById('themeBtn');
-const themeIcon = themeBtn.querySelector('i');
-const html = document.documentElement;
+// DOM Elements
+const navLinks = document.getElementById('navLinks');
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinksAll = document.querySelectorAll('.nav-link');
+const pages = document.querySelectorAll('.page');
+const contactForm = document.getElementById('contactForm');
 
-// Check for saved theme or prefer-color-scheme
-const savedTheme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-html.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-themeBtn.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
+// Toggle mobile menu
+mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    mobileToggle.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
 });
 
-function updateThemeIcon(theme) {
-    themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-}
-
-// Mobile Menu Toggle
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-
-menuBtn.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-    
-    if (navLinks.style.display === 'flex') {
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.width = '100%';
-        navLinks.style.backgroundColor = 'var(--bg-primary)';
-        navLinks.style.padding = '20px';
-        navLinks.style.borderTop = '1px solid var(--border-color)';
-        navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-        navLinks.style.gap = '15px';
-    }
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
-        navLinks.style.display = 'none';
-    }
-});
-
-// Projects Slider
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.slider-dots .dot');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-
-let currentSlide = 0;
-const totalSlides = slides.length;
-
-// Update slider position
-function updateSlider() {
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    // Update dots
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-    });
-}
-
-// Next slide
-nextBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-});
-
-// Previous slide
-prevBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-});
-
-// Dot click navigation
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentSlide = index;
-        updateSlider();
-    });
-});
-
-// Auto slide every 5 seconds
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-}, 5000);
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+// Smooth navigation between pages
+navLinksAll.forEach(link => {
+    link.addEventListener('click', (e) => {
         e.preventDefault();
         
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+        // Get the target page
+        const targetPage = link.getAttribute('data-page');
         
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // Close mobile menu if open
-            navLinks.style.display = 'none';
-            
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
+        // Close mobile menu if open
+        navLinks.classList.remove('active');
+        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        
+        // Update active nav link
+        navLinksAll.forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Show target page with animation
+        pages.forEach(page => {
+            if (page.id === `${targetPage}-page`) {
+                page.classList.add('active');
+                page.style.animation = 'none';
+                setTimeout(() => {
+                    page.style.animation = 'pageFadeIn 0.6s forwards';
+                }, 10);
+            } else {
+                page.classList.remove('active');
+            }
+        });
+        
+        // Smooth scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 });
 
-// Form submission
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', function(e) {
+// Contact form submission
+contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
     
     // In a real application, you would send this data to a server
-    console.log('Form submitted:', data);
+    console.log('Form submitted:', { name, email, message });
     
     // Show success message
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    alert('Thank you for your message! I will get back to you soon.');
     
     // Reset form
-    this.reset();
+    contactForm.reset();
 });
 
-// Navbar scroll effect
-let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
+// Page load animation
+window.addEventListener('DOMContentLoaded', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});
 
+// Add subtle background animation
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    
+    document.body.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+});
+
+// Add scroll effect to navbar
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.style.boxShadow = 'none';
-        return;
-    }
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        // Scrolling down
-        navbar.style.transform = 'translateY(-100%)';
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.backgroundColor = 'rgba(10, 10, 15, 0.95)';
+        navbar.style.backdropFilter = 'blur(15px)';
     } else {
-        // Scrolling up
-        navbar.style.transform = 'translateY(0)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        navbar.style.backgroundColor = 'rgba(10, 10, 15, 0.8)';
+        navbar.style.backdropFilter = 'blur(10px)';
     }
-    
-    lastScroll = currentScroll;
 });

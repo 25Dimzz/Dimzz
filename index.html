@@ -1,214 +1,233 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | [Nama Lo]</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Futuristic Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Portfolio<span class="dot">.</span></a>
-            
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>FUTURE.DEV</span>
             </div>
             
-            <div class="theme-toggle">
-                <button id="themeBtn">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            
-            <button class="menu-btn">
+            <div class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
-            </button>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#about" class="nav-link" data-page="about">About</a>
+                <a href="#projects" class="nav-link" data-page="projects">Projects</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h3 class="hero-subtitle">Hello, I'm</h3>
-            <h1 class="hero-title">[Nama Lo]</h1>
-            <h2 class="hero-role">Frontend Developer & UI Designer</h2>
-            <p class="hero-desc">I create beautiful, functional websites with clean code and modern design principles.</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn-primary">View Projects</a>
-                <a href="#contact" class="btn-secondary">Contact Me</a>
+    <!-- Main Content -->
+    <main class="main-content container">
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Crafting The <span>Future</span> With Code</h1>
+                    <p class="hero-description">I'm a passionate developer creating minimalist, futuristic digital experiences. Welcome to my digital portfolio where innovation meets elegant design.</p>
+                    <a href="#projects" class="btn" data-page="projects">View My Work</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <div class="image-placeholder">
-                <i class="fas fa-user-circle"></i>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Slider -->
-    <section id="projects" class="projects">
-        <div class="section-header">
-            <h2 class="section-title">My Projects</h2>
-            <p class="section-subtitle">Selected works that showcase my skills</p>
-        </div>
-        
-        <div class="slider-container">
-            <div class="slider">
-                <!-- Project Slide 1 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <h3>E-Commerce Dashboard</h3>
-                        <p>Modern dashboard with analytics, charts, and inventory management system.</p>
-                        <div class="tech-tags">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                        <a href="#" class="slide-link">View Details →</a>
-                    </div>
-                </div>
-                
-                <!-- Project Slide 2 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <h3>Travel App UI</h3>
-                        <p>Mobile-first travel application with booking system and interactive maps.</p>
-                        <div class="tech-tags">
-                            <span>Vue.js</span>
-                            <span>Firebase</span>
-                            <span>Mapbox</span>
-                        </div>
-                        <a href="#" class="slide-link">View Details →</a>
-                    </div>
-                </div>
-                
-                <!-- Project Slide 3 -->
-                <div class="slide">
-                    <div class="slide-content">
-                        <h3>Fitness Tracker</h3>
-                        <p>Progressive web app for tracking workouts, nutrition, and progress.</p>
-                        <div class="tech-tags">
-                            <span>PWA</span>
-                            <span>Chart.js</span>
-                            <span>IndexedDB</span>
-                        </div>
-                        <a href="#" class="slide-link">View Details →</a>
-                    </div>
-                </div>
+        <!-- About Page -->
+        <section id="about-page" class="page">
+            <div class="page-header">
+                <h2 class="page-title">About Me</h2>
+                <p class="page-subtitle">Exploring the intersection of technology and design to create meaningful digital experiences.</p>
             </div>
             
-            <div class="slider-controls">
-                <button class="slider-btn prev-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Innovating with Purpose</h3>
+                    <p>I'm a developer with a passion for creating clean, efficient, and future-forward digital solutions. My journey in tech began 7 years ago, and since then I've been fascinated by the potential of code to transform ideas into reality.</p>
+                    <p>My philosophy centers on minimalist design, user-centric experiences, and leveraging cutting-edge technologies to solve complex problems. I believe in the power of technology to create positive change.</p>
+                    
+                    <div class="skills">
+                        <div class="skill">Web Development</div>
+                        <div class="skill">UI/UX Design</div>
+                        <div class="skill">React</div>
+                        <div class="skill">Node.js</div>
+                        <div class="skill">Python</div>
+                        <div class="skill">Machine Learning</div>
+                        <div class="skill">Blockchain</div>
+                        <div class="skill">Cloud Architecture</div>
+                    </div>
                 </div>
-                <button class="slider-btn next-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                
+                <div class="about-visual">
+                    <div class="visual-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Innovation</h3>
+                        <p>Always exploring new technologies</p>
+                    </div>
+                    <div class="visual-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Design</h3>
+                        <p>Minimalist & futuristic aesthetics</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="section-header">
-            <h2 class="section-title">Skills & Tools</h2>
-            <p class="section-subtitle">Technologies I work with</p>
-        </div>
-        
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fab fa-html5"></i>
-                <h3>Frontend</h3>
-                <p>HTML5, CSS3, JavaScript, React, Vue.js</p>
+        <!-- Projects Page -->
+        <section id="projects-page" class="page">
+            <div class="page-header">
+                <h2 class="page-title">Projects</h2>
+                <p class="page-subtitle">A selection of my recent work showcasing innovative solutions and clean design.</p>
             </div>
             
-            <div class="skill-card">
-                <i class="fas fa-server"></i>
-                <h3>Backend</h3>
-                <p>Node.js, Express, MongoDB, REST APIs</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Quantum Dashboard</h3>
+                        <p class="project-description">A futuristic admin dashboard with real-time analytics and AI-powered insights. Built with React and WebGL for immersive data visualization.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">WebGL</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Nexus App</h3>
+                        <p class="project-description">A minimalist productivity app that uses machine learning to optimize your workflow. Cross-platform with seamless sync capabilities.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">ML</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Assistant</h3>
+                        <p class="project-description">An intelligent virtual assistant that learns user preferences over time. Features natural language processing and predictive capabilities.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="skill-card">
-                <i class="fas fa-palette"></i>
-                <h3>Design</h3>
-                <p>Figma, Adobe XD, UI/UX, Responsive Design</p>
-            </div>
-            
-            <div class="skill-card">
-                <i class="fas fa-tools"></i>
-                <h3>Tools</h3>
-                <p>Git, Webpack, VS Code, Chrome DevTools</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section-header">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">Let's work together!</p>
-        </div>
-        
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p>hello@example.com</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>+62 812 3456 7890</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Location</h3>
-                        <p>Jakarta, Indonesia</p>
-                    </div>
-                </div>
-                
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-dribbble"></i></a>
-                </div>
+        <!-- Contact Page -->
+        <section id="contact-page" class="page">
+            <div class="page-header">
+                <h2 class="page-title">Get In Touch</h2>
+                <p class="page-subtitle">Have a project in mind or just want to chat about technology? Feel free to reach out.</p>
             </div>
             
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>hello@futuredev.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>San Francisco, CA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Portfolio. All rights reserved.</p>
-        <p>Made with <i class="fas fa-heart"></i> by [Nama Lo]</p>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-dribbble"></i>
+                </a>
+            </div>
+            
+            <p>&copy; 2023 FUTURE.DEV. All rights reserved. | Designed with a futuristic vision</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

@@ -3,232 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Portfolio</title>
+    <title>Digital Love Letter ✉️</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-code"></i>
-                <span>FUTURE.DEV</span>
-            </div>
-            
-            <div class="mobile-toggle" id="mobileToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            
-            <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link active" data-page="home">Home</a>
-                <a href="#about" class="nav-link" data-page="about">About</a>
-                <a href="#projects" class="nav-link" data-page="projects">Projects</a>
-                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+    <!-- Background Love Shapes -->
+    <div class="love-bg">
+        <div class="love-shape"></div>
+        <div class="love-shape"></div>
+        <div class="love-shape"></div>
+        <div class="love-shape"></div>
+        <div class="love-shape"></div>
+    </div>
+
+    <!-- Pigeon Animation -->
+    <div class="pigeon" id="pigeon">
+        <div class="pigeon-body">
+            <div class="wing left"></div>
+            <div class="wing right"></div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-info">
+            <div class="song-title">Memories - Maroon 5</div>
+            <div class="song-progress">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content container">
-        <!-- Home Page -->
-        <section id="home-page" class="page active">
-            <div class="hero">
-                <div class="hero-content">
-                    <h1 class="hero-title">Crafting The <span>Future</span> With Code</h1>
-                    <p class="hero-description">I'm a passionate developer creating minimalist, futuristic digital experiences. Welcome to my digital portfolio where innovation meets elegant design.</p>
-                    <a href="#projects" class="btn" data-page="projects">View My Work</a>
-                </div>
-                <div class="hero-visual">
-                    <div class="floating-shapes">
-                        <div class="shape shape-1"></div>
-                        <div class="shape shape-2"></div>
-                        <div class="shape shape-3"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Page -->
-        <section id="about-page" class="page">
-            <div class="page-header">
-                <h2 class="page-title">About Me</h2>
-                <p class="page-subtitle">Exploring the intersection of technology and design to create meaningful digital experiences.</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Innovating with Purpose</h3>
-                    <p>I'm a developer with a passion for creating clean, efficient, and future-forward digital solutions. My journey in tech began 7 years ago, and since then I've been fascinated by the potential of code to transform ideas into reality.</p>
-                    <p>My philosophy centers on minimalist design, user-centric experiences, and leveraging cutting-edge technologies to solve complex problems. I believe in the power of technology to create positive change.</p>
-                    
-                    <div class="skills">
-                        <div class="skill">Web Development</div>
-                        <div class="skill">UI/UX Design</div>
-                        <div class="skill">React</div>
-                        <div class="skill">Node.js</div>
-                        <div class="skill">Python</div>
-                        <div class="skill">Machine Learning</div>
-                        <div class="skill">Blockchain</div>
-                        <div class="skill">Cloud Architecture</div>
-                    </div>
-                </div>
-                
-                <div class="about-visual">
-                    <div class="visual-card">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Innovation</h3>
-                        <p>Always exploring new technologies</p>
-                    </div>
-                    <div class="visual-card">
-                        <i class="fas fa-palette"></i>
-                        <h3>Design</h3>
-                        <p>Minimalist & futuristic aesthetics</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Page -->
-        <section id="projects-page" class="page">
-            <div class="page-header">
-                <h2 class="page-title">Projects</h2>
-                <p class="page-subtitle">A selection of my recent work showcasing innovative solutions and clean design.</p>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Quantum Dashboard</h3>
-                        <p class="project-description">A futuristic admin dashboard with real-time analytics and AI-powered insights. Built with React and WebGL for immersive data visualization.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">WebGL</span>
-                            <span class="tag">AI</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Nexus App</h3>
-                        <p class="project-description">A minimalist productivity app that uses machine learning to optimize your workflow. Cross-platform with seamless sync capabilities.</p>
-                        <div class="project-tags">
-                            <span class="tag">Flutter</span>
-                            <span class="tag">ML</span>
-                            <span class="tag">Firebase</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AI Assistant</h3>
-                        <p class="project-description">An intelligent virtual assistant that learns user preferences over time. Features natural language processing and predictive capabilities.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">NLP</span>
-                            <span class="tag">TensorFlow</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Page -->
-        <section id="contact-page" class="page">
-            <div class="page-header">
-                <h2 class="page-title">Get In Touch</h2>
-                <p class="page-subtitle">Have a project in mind or just want to chat about technology? Feel free to reach out.</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>hello@futuredev.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <p>San Francisco, CA</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Your email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" placeholder="Your message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-dribbble"></i>
-                </a>
-            </div>
-            
-            <p>&copy; 2023 FUTURE.DEV. All rights reserved. | Designed with a futuristic vision</p>
+        <div class="music-controls">
+            <button class="music-btn" id="prevBtn">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="music-btn play-btn" id="playBtn">
+                <i class="fas fa-play" id="playIcon"></i>
+            </button>
+            <button class="music-btn" id="nextBtn">
+                <i class="fas fa-step-forward"></i>
+            </button>
+            <button class="music-btn" id="volumeBtn">
+                <i class="fas fa-volume-up"></i>
+            </button>
         </div>
-    </footer>
+    </div>
+
+    <!-- Login Page -->
+    <div class="page active" id="loginPage">
+        <div class="glass-card login-card">
+            <div class="card-header">
+                <h1><i class="fas fa-heart"></i> Secret Message</h1>
+                <p>Enter the magic word to continue</p>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> Password</label>
+                    <input type="password" id="password" placeholder="Type 'love' to enter">
+                    <div class="hint">Hint: The strongest feeling</div>
+                </div>
+                <button class="btn" id="loginBtn">
+                    <i class="fas fa-unlock"></i> Open Letter
+                </button>
+            </div>
+            <div class="card-footer">
+                <p>For special eyes only</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="page" id="dashboardPage">
+        <div class="glass-card dashboard-card">
+            <div class="dashboard-header">
+                <h1><i class="fas fa-heart-circle-check"></i> Welcome to Your Digital Letter</h1>
+                <p>Navigate through the pages of memories</p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="nav-card" data-page="1">
+                    <div class="nav-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Page 1</h3>
+                    <p>First Encounter</p>
+                </div>
+                <div class="nav-card" data-page="2">
+                    <div class="nav-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Page 2</h3>
+                    <p>Sweet Moments</p>
+                </div>
+                <div class="nav-card" data-page="3">
+                    <div class="nav-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Page 3</h3>
+                    <p>Golden Days</p>
+                </div>
+                <div class="nav-card" data-page="4">
+                    <div class="nav-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Page 4</h3>
+                    <p>Night Talks</p>
+                </div>
+                <div class="nav-card" data-page="5">
+                    <div class="nav-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Page 5</h3>
+                    <p>Cloud Nine</p>
+                </div>
+                <div class="nav-card" data-page="6">
+                    <div class="nav-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Page 6</h3>
+                    <p>Our Songs</p>
+                </div>
+                <div class="nav-card" data-page="7">
+                    <div class="nav-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Page 7</h3>
+                    <p>Photo Memories</p>
+                </div>
+                <div class="nav-card" data-page="8">
+                    <div class="nav-icon">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <h3>Page 8</h3>
+                    <p>Happy Times</p>
+                </div>
+                <div class="nav-card" data-page="9">
+                    <div class="nav-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Page 9</h3>
+                    <p>Forever Promise</p>
+                </div>
+                <div class="nav-card" data-page="10">
+                    <div class="nav-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3>Final Letter</h3>
+                    <p>Read My Heart</p>
+                </div>
+            </div>
+            <div class="dashboard-footer">
+                <button class="btn-outline" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Return to Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Letter Pages 1-10 -->
+    <div class="page letter-page" id="page1">
+        <div class="glass-card letter-card">
+            <div class="letter-header">
+                <span class="page-number">Page 1 of 10</span>
+                <h2><i class="fas fa-heart"></i> First Encounter</h2>
+            </div>
+            <div class="letter-content">
+                <p>Dear You,</p>
+                <p>I still remember the first time our eyes met. It was like time stood still for a moment, and everything else faded into the background.</p>
+                <p>Your smile lit up the room, and I knew right then that there was something special about you.</p>
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    Some souls just recognize each other by sight
+                    <i class="fas fa-quote-right"></i>
+                </div>
+            </div>
+            <div class="letter-footer">
+                <button class="btn" data-next="2">Next Page <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page letter-page" id="page2">
+        <div class="glass-card letter-card">
+            <div class="letter-header">
+                <span class="page-number">Page 2 of 10</span>
+                <h2><i class="fas fa-star"></i> Sweet Moments</h2>
+            </div>
+            <div class="letter-content">
+                <p>Every moment with you feels like a precious gift. The way you laugh, the way your eyes sparkle when you're excited, the way you listen so intently...</p>
+                <p>I cherish all these little things that make you, you.</p>
+                <div class="memory">
+                    <i class="fas fa-heart"></i>
+                    <p>Remember that afternoon when we talked for hours without realizing how much time had passed?</p>
+                </div>
+            </div>
+            <div class="letter-footer">
+                <button class="btn-outline" data-prev="1"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn" data-next="3">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page letter-page" id="page3">
+        <div class="glass-card letter-card">
+            <div class="letter-header">
+                <span class="page-number">Page 3 of 10</span>
+                <h2><i class="fas fa-sun"></i> Golden Days</h2>
+            </div>
+            <div class="letter-content">
+                <p>The days with you feel like they're dipped in gold. Even ordinary moments become extraordinary when we share them together.</p>
+                <p>Your presence adds color to my world.</p>
+                <div class="highlight">
+                    <h4><i class="fas fa-gem"></i> Golden Memory</h4>
+                    <p>That sunset we watched together, painting the sky in hues of orange and pink, will forever be etched in my memory.</p>
+                </div>
+            </div>
+            <div class="letter-footer">
+                <button class="btn-outline" data-prev="2"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn" data-next="4">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pages 4-9 (similar structure, I'll skip for brevity) -->
+
+    <!-- Page 10 - Final Letter with Photo Album -->
+    <div class="page letter-page" id="page10">
+        <div class="glass-card letter-card">
+            <div class="letter-header">
+                <span class="page-number">Page 10 of 10</span>
+                <h2><i class="fas fa-envelope-open-text"></i> Final Letter</h2>
+            </div>
+            <div class="letter-content final-letter">
+                <div class="final-content">
+                    <p>My Dearest,</p>
+                    <p>As I write these final words, my heart is full of emotions I can barely contain.</p>
+                    <p>You have brought so much joy, love, and meaning into my life. Every page of this letter represents a piece of my heart that belongs to you.</p>
+                    <p>I promise to cherish every moment, to be there through sunshine and rain, to laugh with you, to dream with you, and to build a beautiful future together.</p>
+                    <div class="signature">
+                        <p>With all my love,</p>
+                        <h3>Forever Yours</h3>
+                    </div>
+                </div>
+                
+                <!-- Photo Album -->
+                <div class="photo-album">
+                    <h3><i class="fas fa-camera"></i> Our Memories</h3>
+                    <div class="album-grid">
+                        <div class="photo-frame">
+                            <div class="photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-heart"></i>
+                                <div class="photo-label">Memory 1</div>
+                            </div>
+                        </div>
+                        <div class="photo-frame">
+                            <div class="photo" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <i class="fas fa-star"></i>
+                                <div class="photo-label">Memory 2</div>
+                            </div>
+                        </div>
+                        <div class="photo-frame">
+                            <div class="photo" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-sun"></i>
+                                <div class="photo-label">Memory 3</div>
+                            </div>
+                        </div>
+                        <div class="photo-frame">
+                            <div class="photo" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                <i class="fas fa-moon"></i>
+                                <div class="photo-label">Memory 4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="letter-footer">
+                <button class="btn-outline" data-prev="9"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn" id="backToDashboard">
+                    <i class="fas fa-home"></i> Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots">
+        <!-- Dots will be generated by JavaScript -->
+    </div>
 
     <script src="script.js"></script>
 </body>

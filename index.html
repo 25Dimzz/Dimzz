@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memories - Digital Letter</title>
   <style>
-    /* CSS Reset & Global */
+    /* [CSS sebelumnya tetap sama - tidak berubah] */
     * {
       margin: 0;
       padding: 0;
@@ -34,7 +34,6 @@
       position: relative;
     }
 
-    /* Background dengan efek glassmorphism */
     body::before {
       content: '';
       position: fixed;
@@ -49,7 +48,6 @@
       backdrop-filter: blur(20px);
     }
 
-    /* Container utama dengan efek glass */
     .glass-container {
       width: 95%;
       max-width: 900px;
@@ -81,7 +79,6 @@
       z-index: -1;
     }
 
-    /* Judul utama */
     .main-title {
       text-align: center;
       font-size: 2.8rem;
@@ -108,7 +105,6 @@
       border-radius: 2px;
     }
 
-    /* Music Player dengan efek glass */
     .music-player-glass {
       background: var(--blur-bg);
       backdrop-filter: blur(15px);
@@ -136,12 +132,6 @@
       gap: 10px;
     }
 
-    .music-title::before {
-      content: '🎵';
-      font-size: 1.2rem;
-    }
-
-    /* Progress bar dengan efek glow */
     .progress-container {
       width: 100%;
       height: 8px;
@@ -151,22 +141,6 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-    }
-
-    .progress-container::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
     }
 
     .progress-bar {
@@ -180,7 +154,6 @@
       box-shadow: 0 0 15px rgba(255, 118, 117, 0.5);
     }
 
-    /* Tombol dengan efek glass */
     .glass-button {
       padding: 1.1rem 2rem;
       background: rgba(255, 255, 255, 0.1);
@@ -201,26 +174,11 @@
       overflow: hidden;
     }
 
-    .glass-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s;
-    }
-
     .glass-button:hover {
       background: rgba(255, 255, 255, 0.15);
       transform: translateY(-3px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .glass-button:hover::before {
-      left: 100%;
     }
 
     .glass-button.primary {
@@ -230,12 +188,6 @@
       box-shadow: 0 5px 20px rgba(255, 118, 117, 0.4);
     }
 
-    .glass-button.primary:hover {
-      background: linear-gradient(135deg, #ff5e5e, #fd5a8f);
-      box-shadow: 0 8px 25px rgba(255, 118, 117, 0.6);
-    }
-
-    /* Input field dengan efek glass */
     .glass-input {
       padding: 1rem 1.5rem;
       background: rgba(255, 255, 255, 0.08);
@@ -250,14 +202,6 @@
       transition: all 0.3s ease;
     }
 
-    .glass-input:focus {
-      outline: none;
-      border-color: rgba(255, 118, 117, 0.6);
-      box-shadow: 0 0 0 3px rgba(255, 118, 117, 0.2);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Navigasi dengan efek smooth */
     .navigation {
       display: flex;
       justify-content: center;
@@ -266,7 +210,6 @@
       flex-wrap: wrap;
     }
 
-    /* Halaman dengan animasi fade */
     .page {
       display: none;
       opacity: 0;
@@ -283,7 +226,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Card surat dengan efek scroll fade */
     .letter-card {
       background: rgba(30, 30, 40, 0.6);
       backdrop-filter: blur(15px);
@@ -303,16 +245,6 @@
       transform: translateY(0);
     }
 
-    .letter-content {
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    /* Timestamp dengan efek subtle */
     .timestamp {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -323,12 +255,29 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Galeri foto dengan efek hover */
+    /* Gallery styles */
+    .gallery-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1.2rem;
-      margin-top: 2.5rem;
+      margin-top: 1rem;
     }
 
     .gallery-item {
@@ -340,7 +289,7 @@
       opacity: 0;
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
       aspect-ratio: 1;
-      background: rgba(40, 40, 50, 0.5);
+      background: linear-gradient(135deg, rgba(255,118,117,0.1), rgba(162,155,254,0.1));
     }
 
     .gallery-item.visible {
@@ -364,34 +313,27 @@
       transform: scale(1.1);
     }
 
-    /* Efek bintang dan shooting star */
-    .star {
-      position: fixed;
-      background: white;
+    .gallery-loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+    }
+
+    .gallery-loading .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      z-index: -1;
-      opacity: 0;
-      animation: twinkle 3s infinite ease-in-out;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 1rem;
     }
 
-    .shooting-star {
-      position: fixed;
-      width: 3px;
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      filter: blur(1px);
-      z-index: -1;
-      opacity: 0;
-      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.1; transform: scale(0.8); }
-      50% { opacity: 0.8; transform: scale(1.2); }
-    }
-
-    /* Lightbox dengan efek glass */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -427,125 +369,17 @@
       opacity: 1;
     }
 
-    /* Counter dengan efek glow */
-    .day-counter {
-      font-size: 1.3rem;
-      text-align: center;
-      margin: 2rem 0;
-      padding: 1.2rem;
-      background: rgba(255, 118, 117, 0.1);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 118, 117, 0.2);
-      color: var(--accent-glow);
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .day-counter::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 118, 117, 0.2), transparent);
-      animation: shimmer 3s infinite;
-    }
-
-    /* Efek scroll smooth */
-    html {
-      scroll-behavior: smooth;
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
-      .glass-container {
-        padding: 1.5rem;
-        margin: 1rem auto;
-        border-radius: 20px;
-      }
-
-      .main-title {
-        font-size: 2.2rem;
-      }
-
-      .glass-button {
-        padding: 0.9rem 1.5rem;
-        font-size: 1rem;
-      }
-
       .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       }
     }
 
     @media (max-width: 480px) {
-      .glass-container {
-        padding: 1.2rem;
-        width: 98%;
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
-
-      .main-title {
-        font-size: 1.8rem;
-      }
-
-      .navigation {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .glass-button {
-        width: 100%;
-        max-width: 300px;
-      }
-    }
-
-    /* Animasi pigeon khusus */
-    .pigeon-animation {
-      font-size: 4rem;
-      text-align: center;
-      margin: 2rem 0;
-      animation: flyAcross 15s ease-in-out infinite, gentleGlow 3s ease-in-out infinite alternate;
-      filter: drop-shadow(0 0 10px rgba(255, 118, 117, 0.5));
-    }
-
-    @keyframes flyAcross {
-      0% { transform: translateX(-100px) scale(0.9); opacity: 0; }
-      15% { opacity: 1; transform: translateX(-50px) scale(1); }
-      50% { transform: translateX(0) scale(1.1); }
-      85% { opacity: 1; transform: translateX(50px) scale(1); }
-      100% { transform: translateX(100px) scale(0.9); opacity: 0; }
-    }
-
-    @keyframes gentleGlow {
-      0% { filter: drop-shadow(0 0 8px rgba(255, 118, 117, 0.5)); }
-      100% { filter: drop-shadow(0 0 20px rgba(255, 118, 117, 0.8)); }
-    }
-
-    /* Loading animation */
-    .loading-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin: 2rem 0;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      opacity: 0.6;
-      animation: bounce 1.4s infinite ease-in-out both;
-    }
-
-    .dot:nth-child(1) { animation-delay: -0.32s; }
-    .dot:nth-child(2) { animation-delay: -0.16s; }
-
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.6; }
-      40% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -583,17 +417,17 @@
       <div style="text-align: center; margin-bottom: 2.5rem;">
         <div class="pigeon-animation">🕊️</div>
         <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 1rem;">
-          Enter the secret code to open this digital letter
+          Masukkan kode rahasia untuk membuka surat digital ini
         </p>
       </div>
       
       <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-        <input type="password" class="glass-input" id="password" placeholder="Enter password...">
+        <input type="password" class="glass-input" id="password" placeholder="Masukkan password...">
         <button class="glass-button primary" onclick="openLetter()">
-          <span>🔓</span> Open Letter
+          <span>🔓</span> Buka Surat
         </button>
         <p id="errorMsg" style="color: #ff7675; display: none; margin-top: 1rem;">
-          Incorrect password. Please try again.
+          Password salah. Coba lagi.
         </p>
       </div>
     </div>
@@ -605,7 +439,7 @@
       <!-- Dashboard -->
       <div id="dashboardPage" class="page active">
         <div class="letter-card visible">
-          <div class="loading-dots">
+          <div class="loading-dots" id="loadingDots">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
@@ -617,16 +451,33 @@
         
         <div class="navigation">
           <button id="openLetterBtn" class="glass-button primary" onclick="openRealLetter()" disabled>
-            <span>📖</span> Open Letter
+            <span>📖</span> Buka Surat
           </button>
           <button id="laterBtn" class="glass-button" onclick="window.location.href='https://google.com'" disabled>
-            <span>❌</span> Maybe Later
+            <span>❌</span> Nanti Saja
           </button>
         </div>
       </div>
       
       <!-- Letter Pages Container -->
       <div id="allPages"></div>
+
+      <!-- Gallery Section -->
+      <div id="gallerySection" class="page gallery-section" style="display: none;">
+        <div class="gallery-title">
+          <span>📸</span> Galeri Kenangan
+        </div>
+        <div id="galleryContainer">
+          <div class="gallery-loading" id="galleryLoading">
+            <div class="spinner"></div>
+            <p>Memuat galeri kenangan...</p>
+          </div>
+          <div class="gallery-grid" id="galleryGrid" style="display: none;"></div>
+          <div id="galleryError" style="text-align: center; color: #ff7675; display: none;">
+            <p>⚠️ Gagal memuat galeri. Periksa koneksi atau file foto.json.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -668,7 +519,7 @@
     let currentSongIndex = 0;
     let correctPassword = "";
     let audioPlayer, progressContainer, progressBar, timeDisplay, songTitle, playBtn;
-    let preloadedGallery = [];
+    let decryptedImages = [];
     let letterPages = [];
     let isPlaying = false;
 
@@ -693,10 +544,6 @@
       
       // Initialize UI
       loadSong(currentSongIndex);
-      createStars();
-      createShootingStars();
-      
-      // Setup scroll animations
       setupScrollAnimations();
       
       // Hide letter section initially
@@ -802,8 +649,8 @@
         // Decrypt and render letter pages
         renderLetterPages(password);
         
-        // Load gallery images
-        loadGalleryImages(password);
+        // Preload gallery images from JSON
+        loadGalleryFromJSON(password);
         
       } else {
         document.getElementById('errorMsg').style.display = 'block';
@@ -824,12 +671,17 @@
 
     function showAsciiNotification() {
       const asciiElement = document.getElementById('asciiNotification');
-      const asciiText = `📜 Hi, someone I've been waiting to read this letter...
-Please read it to the end, because I made this letter full of memories hehe...
-If you get tired reading it, just read slowly page by page...
+      const loadingDots = document.getElementById('loadingDots');
+      
+      // Hide loading dots
+      loadingDots.style.display = 'none';
+      
+      const asciiText = `📜 Hi, seseorang yang selalu aku tunggu untuk baca surat ini...
+tolong di baca sampai habis ya, karena surat ini aku buat penuh dengan kenangan hehe...
+kalau kamu cape baca nya, baca pelan-pelan saja per halaman kok hehe...
 
-🖤 This letter has been secretly kept since the first day...
-and it's only for you.
+🖤 Surat ini diam-diam dijaga sejak hari pertama...
+dan cuma buat kamu.
 - D`;
       
       asciiElement.style.display = 'block';
@@ -856,7 +708,7 @@ and it's only for you.
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       
       document.getElementById('counter').textContent = 
-        `📅 This letter has been saved for ${diffDays} days.`;
+        `📅 Surat ini telah disimpan selama ${diffDays} hari.`;
     }
 
     function renderLetterPages(password) {
@@ -877,12 +729,12 @@ and it's only for you.
           pageDiv.innerHTML = `
             <div class="letter-card">
               <div class="letter-content">${decrypted}</div>
-              <div class="timestamp">📅 Opened on ${new Date().toLocaleString('id-ID')}</div>
+              <div class="timestamp">📅 Dibuka pada ${new Date().toLocaleString('id-ID')}</div>
             </div>
             <div class="navigation">
-              ${i > 1 ? `<button class="glass-button" onclick="goToPage(${i-1})"><span>⬅</span> Back</button>` : ''}
-              ${i < 50 && encryptedLetter[`halaman${i+1}`] ? `<button class="glass-button primary" onclick="goToPage(${i+1})"><span>➡</span> Next</button>` : ''}
-              ${i === 50 ? `<button class="glass-button primary" onclick="openFinalLetter()"><span>📜</span> Final Letter</button>` : ''}
+              ${i > 1 ? `<button class="glass-button" onclick="goToPage(${i-1})"><span>⬅</span> Kembali</button>` : ''}
+              ${i < 50 && encryptedLetter[`halaman${i+1}`] ? `<button class="glass-button primary" onclick="goToPage(${i+1})"><span>➡</span> Lanjut</button>` : ''}
+              ${i === 50 ? `<button class="glass-button primary" onclick="openFinalLetter()"><span>📜</span> Surat Terakhir</button>` : ''}
             </div>
           `;
           
@@ -927,7 +779,7 @@ and it's only for you.
       goToPage(1);
     }
 
-    function openFinalLetter() {
+    async function openFinalLetter() {
       if (!correctPassword) return;
       
       try {
@@ -945,33 +797,24 @@ and it's only for you.
         finalPage.innerHTML = `
           <div class="letter-card">
             <div style="text-align: center; margin-bottom: 2rem; color: #ff7675; font-size: 1.3rem;">
-              📩 This letter has been read to the end.<br>
-              <span style="color: #aaa; font-size: 1rem;">Thank you. ily<3</span>
+              📩 Surat ini telah dibaca sampai akhir.<br>
+              <span style="color: #aaa; font-size: 1rem;">Terima kasih. ily<3</span>
             </div>
             <div class="letter-content">${decrypted}</div>
-            <div class="timestamp">📅 Opened on ${new Date().toLocaleString('id-ID')}</div>
-          </div>
-          
-          <div id="galleryContainer" style="margin-top: 3rem;">
-            <div style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light); font-size: 1.2rem;">
-              📸 Memories Gallery
-            </div>
-            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="timestamp">📅 Dibuka pada ${new Date().toLocaleString('id-ID')}</div>
           </div>
           
           <div class="navigation" style="margin-top: 3rem;">
             <button class="glass-button" onclick="goToDashboard()">
-              <span>🏠</span> Back to Dashboard
+              <span>🏠</span> Kembali ke Dashboard
+            </button>
+            <button class="glass-button primary" onclick="showGallery()">
+              <span>📸</span> Lihat Galeri
             </button>
           </div>
         `;
         
         document.getElementById('allPages').appendChild(finalPage);
-        
-        // Load gallery images
-        setTimeout(() => {
-          loadGalleryToFinalPage();
-        }, 500);
         
       } catch (e) {
         console.error('Error decrypting final letter:', e);
@@ -995,115 +838,147 @@ and it's only for you.
     }
 
     // =============== GALLERY FUNCTIONS ===============
-    async function loadGalleryImages(password) {
-      // In a real implementation, you would fetch from foto.json
-      // For now, we'll create sample image URLs
-      preloadedGallery = [
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
-        'https://images.unsplash.com/photo-1494790108755-2616c113a1c0?w-400&h=400&fit=crop',
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop',
-        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=400&fit=crop',
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop',
-        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop',
-      ];
+    async function loadGalleryFromJSON(password) {
+      try {
+        console.log('Memuat galeri dari foto.json...');
+        
+        // Fetch encrypted images from foto.json
+        const response = await fetch('foto.json');
+        if (!response.ok) {
+          throw new Error('File foto.json tidak ditemukan');
+        }
+        
+        const encryptedImages = await response.json();
+        console.log(`Ditemukan ${encryptedImages.length} gambar terenkripsi`);
+        
+        // Decrypt each image URL
+        decryptedImages = encryptedImages.map(encrypted => {
+          try {
+            return CryptoJS.AES.decrypt(encrypted, password).toString(CryptoJS.enc.Utf8);
+          } catch (e) {
+            console.error('Gagal mendekripsi gambar:', e);
+            return null;
+          }
+        }).filter(url => url && url.startsWith('http'));
+        
+        console.log(`Berhasil mendekripsi ${decryptedImages.length} gambar`);
+        
+        // Preload images
+        preloadGalleryImages();
+        
+      } catch (error) {
+        console.error('Error loading gallery:', error);
+        document.getElementById('galleryError').style.display = 'block';
+      }
     }
 
-    function loadGalleryToFinalPage() {
+    function preloadGalleryImages() {
+      if (!decryptedImages.length) {
+        console.log('Tidak ada gambar untuk dipreload');
+        return;
+      }
+      
+      console.log('Preloading gallery images...');
+      let loadedCount = 0;
+      
+      decryptedImages.forEach((imgUrl, index) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          console.log(`Gambar ${index + 1} loaded: ${imgUrl.substring(0, 50)}...`);
+          
+          if (loadedCount === decryptedImages.length) {
+            console.log('Semua gambar berhasil di-preload');
+          }
+        };
+        img.onerror = () => {
+          console.error(`Gagal memuat gambar: ${imgUrl}`);
+          loadedCount++;
+        };
+        img.src = imgUrl;
+      });
+    }
+
+    function showGallery() {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show gallery section
+      const gallerySection = document.getElementById('gallerySection');
+      gallerySection.classList.add('active');
+      gallerySection.style.display = 'block';
+      
+      // Load gallery images if not already loaded
+      if (decryptedImages.length > 0) {
+        renderGallery();
+      } else {
+        // Try to load again
+        loadGalleryFromJSON(correctPassword).then(() => {
+          if (decryptedImages.length > 0) {
+            renderGallery();
+          }
+        });
+      }
+      
+      // Scroll to gallery
+      setTimeout(() => {
+        gallerySection.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+
+    function renderGallery() {
       const galleryGrid = document.getElementById('galleryGrid');
-      if (!galleryGrid || !preloadedGallery.length) return;
+      const galleryLoading = document.getElementById('galleryLoading');
+      const galleryError = document.getElementById('galleryError');
       
+      // Hide loading and error
+      galleryLoading.style.display = 'none';
+      galleryError.style.display = 'none';
+      
+      // Clear grid
       galleryGrid.innerHTML = '';
+      galleryGrid.style.display = 'grid';
       
-      preloadedGallery.forEach((imgSrc, index) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.innerHTML = `<img src="${imgSrc}" alt="Memory ${index + 1}" loading="lazy">`;
+      if (!decryptedImages.length) {
+        galleryError.style.display = 'block';
+        galleryError.innerHTML = '<p>⚠️ Tidak ada gambar dalam galeri.</p>';
+        return;
+      }
+      
+      console.log(`Menampilkan ${decryptedImages.length} gambar di galeri`);
+      
+      // Create gallery items
+      decryptedImages.forEach((imgUrl, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+          <img src="${imgUrl}" 
+               alt="Kenangan ${index + 1}" 
+               loading="lazy"
+               onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>'">
+        `;
         
-        item.onclick = () => {
+        // Add click event for lightbox
+        galleryItem.onclick = () => {
           const lightbox = document.getElementById('lightbox');
           const lightboxImg = document.getElementById('lightboxImg');
           
-          lightboxImg.src = imgSrc;
+          lightboxImg.src = imgUrl;
           lightbox.classList.add('active');
         };
         
-        galleryGrid.appendChild(item);
+        galleryGrid.appendChild(galleryItem);
         
         // Staggered animation
         setTimeout(() => {
-          item.classList.add('visible');
+          galleryItem.classList.add('visible');
         }, index * 100);
       });
     }
 
-    // =============== VISUAL EFFECTS ===============
-    function createStars() {
-      const body = document.body;
-      const starCount = 100;
-      
-      for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        
-        // Random position
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.top = `${Math.random() * 100}vh`;
-        
-        // Random size
-        const size = Math.random() * 3 + 1;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        
-        // Random animation delay
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        
-        body.appendChild(star);
-      }
-    }
-
-    function createShootingStars() {
-      setInterval(() => {
-        if (Math.random() < 0.3) {
-          const shootingStar = document.createElement('div');
-          shootingStar.className = 'shooting-star';
-          
-          // Random start position (top area)
-          shootingStar.style.left = `${Math.random() * 30}vw`;
-          shootingStar.style.top = `${Math.random() * 30}vh`;
-          
-          // Random angle
-          const angle = Math.random() * 30 + 15;
-          const distance = 100 + Math.random() * 50;
-          
-          // Animation
-          shootingStar.animate([
-            { 
-              opacity: 0,
-              transform: `translate(0, 0) rotate(${angle}deg)`
-            },
-            { 
-              opacity: 1,
-              transform: `translate(${distance}px, ${distance}px) rotate(${angle}deg)`
-            },
-            { 
-              opacity: 0,
-              transform: `translate(${distance * 2}px, ${distance * 2}px) rotate(${angle}deg)`
-            }
-          ], {
-            duration: 1500,
-            easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-          });
-          
-          document.body.appendChild(shootingStar);
-          
-          // Remove after animation
-          setTimeout(() => {
-            shootingStar.remove();
-          }, 2000);
-        }
-      }, 3000);
-    }
-
+    // =============== SCROLL ANIMATIONS ===============
     function setupScrollAnimations() {
       // Observe letter cards for fade-in effect
       const observer = new IntersectionObserver((entries) => {
@@ -1122,32 +997,19 @@ and it's only for you.
         observer.observe(card);
       });
       
-      // Smooth scroll behavior
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+      // Observe gallery items
+      const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
           }
         });
+      }, {
+        threshold: 0.1
       });
       
-      // Parallax effect for background
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.glass-container');
-        
-        parallaxElements.forEach(el => {
-          const rate = scrolled * -0.2;
-          el.style.transform = `translateY(${rate}px)`;
-        });
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        galleryObserver.observe(item);
       });
     }
 

@@ -25,6 +25,9 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            will-change: transform;
         }
 
         /* ========== BACKGROUND & STARS ========== */
@@ -44,6 +47,7 @@
             background: #fff;
             border-radius: 50%;
             animation: twinkle 5s infinite ease-in-out;
+            will-change: transform, opacity;
         }
 
         .star:nth-child(3n) {
@@ -78,6 +82,12 @@
             position: relative;
             overflow: hidden;
             z-index: 10;
+            will-change: transform;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-container:hover {
+            transform: translateY(-2px);
         }
 
         .glass-container::before {
@@ -110,6 +120,7 @@
             margin-bottom: 8px;
             letter-spacing: -0.5px;
             filter: drop-shadow(0 4px 15px rgba(255, 118, 117, 0.3));
+            will-change: transform;
         }
 
         .subtitle {
@@ -129,6 +140,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, box-shadow;
         }
 
         .music-player-wrapper:hover {
@@ -173,9 +185,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1.3rem;
             backdrop-filter: blur(10px);
+            will-change: transform, background-color;
         }
 
         .control-btn:hover {
@@ -196,12 +209,19 @@
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             margin: 30px 0;
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            will-change: transform, opacity;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         .password-input {
@@ -215,9 +235,10 @@
             max-width: 90%;
             margin: 25px 0;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             letter-spacing: 4px;
+            will-change: transform, border-color, box-shadow;
         }
 
         .password-input:focus {
@@ -225,11 +246,17 @@
             border-color: rgba(255, 118, 117, 0.6);
             box-shadow: 0 0 0 3px rgba(255, 118, 117, 0.2);
             background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
         }
 
         .password-input::placeholder {
             color: rgba(255, 255, 255, 0.4);
             letter-spacing: normal;
+            transition: opacity 0.3s ease;
+        }
+
+        .password-input:focus::placeholder {
+            opacity: 0.5;
         }
 
         .login-btn {
@@ -241,9 +268,10 @@
             font-weight: 600;
             border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             letter-spacing: 0.5px;
             box-shadow: 0 8px 25px rgba(255, 118, 117, 0.3);
+            will-change: transform, box-shadow;
         }
 
         .login-btn:hover {
@@ -266,7 +294,8 @@
         /* ========== DASHBOARD ========== */
         .dashboard {
             display: none;
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            will-change: opacity;
         }
 
         @keyframes fadeIn {
@@ -284,29 +313,73 @@
             margin-bottom: 40px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .counter:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ========== PIGEON ANIMATION (FIXED CENTER) ========== */
+        .pigeon-container {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
         .pigeon-animation {
             font-size: 4rem;
-            margin: 40px 0;
-            animation: pigeonFly 12s ease-in-out infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: pigeonFly 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             filter: drop-shadow(0 0 20px rgba(255, 118, 117, 0.5));
+            will-change: transform, opacity;
+            z-index: 2;
         }
 
         @keyframes pigeonFly {
-            0%, 100% { 
-                transform: translateX(-100px) scale(0.9); 
+            0% { 
+                transform: translate(-150%, -50%) scale(0.8); 
                 opacity: 0;
             }
-            15%, 85% { 
-                opacity: 0.7; 
+            15% { 
+                opacity: 0.6; 
             }
             50% { 
-                transform: translateX(100px) scale(1.1); 
+                transform: translate(-50%, -50%) scale(1.2); 
                 opacity: 1;
+            }
+            85% { 
+                opacity: 0.6; 
+            }
+            100% { 
+                transform: translate(50%, -50%) scale(0.8); 
+                opacity: 0;
             }
         }
 
+        .pigeon-track {
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 118, 117, 0.3), 
+                rgba(162, 155, 254, 0.3), 
+                transparent);
+            top: 50%;
+            left: 10%;
+            opacity: 0.5;
+        }
+
+        /* ========== WELCOME MESSAGE ========== */
         .welcome-message {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -319,14 +392,29 @@
             font-size: 1.1rem;
             line-height: 1.8;
             color: rgba(255, 255, 255, 0.9);
-            animation: typing 3s steps(60, end);
-            overflow: hidden;
             border-left: 4px solid #ff7675;
+            overflow: hidden;
+            will-change: transform;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        .welcome-message:hover {
+            transform: translateY(-3px);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #ff7675;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         /* ========== NAVIGATION BUTTONS ========== */
@@ -347,20 +435,25 @@
             font-size: 1.1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             min-width: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             backdrop-filter: blur(10px);
+            will-change: transform, background-color;
         }
 
         .nav-btn:hover {
             background: rgba(255, 118, 117, 0.2);
             border-color: rgba(255, 118, 117, 0.4);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 25px rgba(255, 118, 117, 0.2);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0) scale(0.98);
         }
 
         .nav-btn:disabled {
@@ -373,7 +466,8 @@
         .page-container {
             display: none;
             opacity: 0;
-            animation: pageFadeIn 0.5s ease-out forwards;
+            animation: pageFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            will-change: opacity;
         }
 
         @keyframes pageFadeIn {
@@ -394,6 +488,12 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            will-change: transform;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-content:hover {
+            transform: translateY(-5px);
         }
 
         .page-footer {
@@ -403,12 +503,18 @@
             margin-top: 30px;
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
         }
 
         .timestamp {
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.95rem;
             font-style: italic;
+            transition: color 0.3s ease;
+        }
+
+        .timestamp:hover {
+            color: rgba(255, 118, 117, 0.8);
         }
 
         .page-indicator {
@@ -417,6 +523,12 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 10px 20px;
             border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .page-indicator:hover {
+            background: rgba(255, 118, 117, 0.1);
+            transform: scale(1.05);
         }
 
         /* ========== PHOTO GALLERY - GOOGLE PHOTOS STYLE ========== */
@@ -427,6 +539,7 @@
             gap: 15px;
             margin: 40px 0;
             grid-auto-flow: dense;
+            will-change: transform;
         }
 
         .photo-item {
@@ -437,6 +550,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             background: rgba(255, 255, 255, 0.05);
+            will-change: transform;
         }
 
         .photo-item:hover {
@@ -450,7 +564,8 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .photo-item:hover img {
@@ -492,8 +607,9 @@
             z-index: 10000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(30px);
+            will-change: opacity, transform;
         }
 
         .lightbox.active {
@@ -509,6 +625,7 @@
             transform: scale(0.8);
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
         }
 
         .lightbox.active .lightbox-img {
@@ -528,13 +645,14 @@
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
+            will-change: transform;
         }
 
         .lightbox-close:hover {
             background: rgba(255, 118, 117, 0.3);
-            transform: rotate(90deg);
+            transform: rotate(90deg) scale(1.1);
         }
 
         /* ========== FINAL MESSAGE ========== */
@@ -548,6 +666,12 @@
             margin: 40px 0;
             border: 1px solid rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(30px);
+            will-change: transform;
+            transition: transform 0.3s ease;
+        }
+
+        .final-message:hover {
+            transform: translateY(-5px);
         }
 
         .final-title {
@@ -570,6 +694,11 @@
             font-size: 1.1rem;
             margin-top: 20px;
             display: block;
+            transition: color 0.3s ease;
+        }
+
+        .love-note:hover {
+            color: #ff7675;
         }
 
         /* ========== RESPONSIVE ========== */
@@ -610,6 +739,10 @@
                 padding: 25px;
                 font-size: 1.05rem;
             }
+
+            .pigeon-animation {
+                font-size: 3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -630,6 +763,10 @@
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 grid-auto-rows: 100px;
             }
+
+            .pigeon-animation {
+                font-size: 2.5rem;
+            }
         }
 
         /* ========== UTILITY CLASSES ========== */
@@ -642,12 +779,24 @@
         }
 
         .fade-out {
-            animation: fadeOut 0.4s ease forwards;
+            animation: fadeOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            will-change: opacity;
         }
 
         @keyframes fadeOut {
             from { opacity: 1; }
             to { opacity: 0; }
+        }
+
+        /* ========== SMOOTH SCROLLING & PERFORMANCE ========== */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        input, button, textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
 
         /* ========== SCROLLBAR ========== */
@@ -663,10 +812,12 @@
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, #ff7675, #a29bfe);
             border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #ff5252, #8c7bff);
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -710,7 +861,12 @@
 
             <!-- Dashboard Content -->
             <div id="dashboardSurat" class="page-container visible">
-                <div class="pigeon-animation">🕊️</div>
+                <!-- Fixed Center Pigeon Animation -->
+                <div class="pigeon-container">
+                    <div class="pigeon-track"></div>
+                    <div class="pigeon-animation">🕊️</div>
+                </div>
+                
                 <div class="welcome-message" id="asciiNotifAnime"></div>
                 <div class="nav-buttons">
                     <button id="btnBukaSurat" class="nav-btn" onclick="bukaSuratAsli()" disabled>
@@ -779,6 +935,14 @@
             }
 
             createStars();
+            
+            // Optimize scrolling performance
+            document.addEventListener('scroll', () => {
+                document.body.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    document.body.style.pointerEvents = 'auto';
+                }, 100);
+            }, { passive: true });
         });
 
         // ========== FUNGSI BACKGROUND STARS ==========
@@ -850,21 +1014,25 @@
             if (hashHex === passwordHash) {
                 passwordYangBenar = pass;
                 
-                // Animasi fade out login
+                // Smooth fade out login
                 const loginSection = document.getElementById("loginSection");
+                loginSection.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 loginSection.style.opacity = '0';
-                loginSection.style.transform = 'translateY(-20px)';
+                loginSection.style.transform = 'translateY(-20px) scale(0.95)';
                 
                 setTimeout(() => {
                     loginSection.classList.add('hidden');
-                    document.getElementById("suratSection").classList.remove('hidden');
-                    document.getElementById("suratSection").style.opacity = '0';
-                    document.getElementById("suratSection").style.display = 'block';
+                    const suratSection = document.getElementById("suratSection");
+                    suratSection.classList.remove('hidden');
+                    suratSection.style.opacity = '0';
+                    suratSection.style.transform = 'translateY(20px)';
+                    suratSection.style.display = 'block';
                     
-                    // Animasi fade in dashboard
+                    // Smooth fade in dashboard
                     setTimeout(() => {
-                        document.getElementById("suratSection").style.opacity = '1';
-                        document.getElementById("suratSection").style.transition = 'opacity 0.6s ease';
+                        suratSection.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        suratSection.style.opacity = '1';
+                        suratSection.style.transform = 'translateY(0)';
                     }, 50);
                     
                     playMusik();
@@ -885,16 +1053,36 @@
                                 CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
                             );
                         });
-                }, 400);
+                }, 500);
                 
             } else {
                 const errorMsg = document.getElementById("errorMsg");
+                errorMsg.style.transition = 'opacity 0.3s ease';
                 errorMsg.style.opacity = '1';
+                
+                // Shake animation for wrong password
+                const passwordInput = document.getElementById("password");
+                passwordInput.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 500);
+                
                 setTimeout(() => {
                     errorMsg.style.opacity = '0';
                 }, 2000);
             }
         }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-8px); }
+                75% { transform: translateX(8px); }
+            }
+        `;
+        document.head.appendChild(style);
 
         function showAsciiAnime() {
             const notif = document.getElementById("asciiNotifAnime");
@@ -914,17 +1102,21 @@ dan cuma buat kamu.
                 if (i < asciiText.length) {
                     notif.textContent += asciiText.charAt(i);
                     i++;
-                    setTimeout(typingAnime, 40);
+                    setTimeout(typingAnime, 35);
                 }
             }
-            setTimeout(typingAnime, 500);
+            setTimeout(typingAnime, 600);
         }
 
         function gantiHalaman(n) {
             const pages = document.querySelectorAll('.page-container');
             pages.forEach(page => {
+                page.style.transition = 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
                 page.style.opacity = '0';
-                page.style.display = 'none';
+                page.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    page.style.display = 'none';
+                }, 400);
             });
             
             const target = typeof n === 'string' 
@@ -936,8 +1128,9 @@ dan cuma buat kamu.
                     target.style.display = 'block';
                     setTimeout(() => {
                         target.style.opacity = '1';
+                        target.style.transform = 'translateY(0)';
                     }, 50);
-                }, 300);
+                }, 400);
             }
         }
 
@@ -1016,104 +1209,118 @@ dan cuma buat kamu.
 
         function bukaSuratTerakhir(kunci) {
             const container = document.getElementById("semuaHalaman");
-            container.querySelectorAll('.page-container').forEach(el => el.remove());
+            container.querySelectorAll('.page-container').forEach(el => {
+                el.style.transition = 'opacity 0.4s ease';
+                el.style.opacity = '0';
+                setTimeout(() => el.remove(), 400);
+            });
 
-            const finalPage = document.createElement("div");
-            finalPage.classList.add("page-container", "visible");
-            finalPage.id = "suratTerakhirLayer";
-            finalPage.style.opacity = "1";
+            setTimeout(() => {
+                const finalPage = document.createElement("div");
+                finalPage.classList.add("page-container");
+                finalPage.id = "suratTerakhirLayer";
+                finalPage.style.opacity = "0";
+                finalPage.style.transform = "translateY(30px)";
 
-            const finalMessage = document.createElement("div");
-            finalMessage.classList.add("final-message");
+                const finalMessage = document.createElement("div");
+                finalMessage.classList.add("final-message");
 
-            const finalTitle = document.createElement("div");
-            finalTitle.classList.add("final-title");
-            finalTitle.textContent = "🎉 Surat Selesai Dibaca";
+                const finalTitle = document.createElement("div");
+                finalTitle.classList.add("final-title");
+                finalTitle.textContent = "🎉 Surat Selesai Dibaca";
 
-            const finalText = document.createElement("div");
-            finalText.classList.add("final-text");
+                const finalText = document.createElement("div");
+                finalText.classList.add("final-text");
 
-            const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
-            finalText.textContent = decrypted;
+                const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
+                finalText.textContent = decrypted;
 
-            const loveNote = document.createElement("span");
-            loveNote.classList.add("love-note");
-            loveNote.textContent = "Terima kasih. ily<3";
+                const loveNote = document.createElement("span");
+                loveNote.classList.add("love-note");
+                loveNote.textContent = "Terima kasih. ily<3";
 
-            const timestamp = document.createElement("div");
-            timestamp.classList.add("timestamp");
-            timestamp.textContent = `📅 Dibaca sampai akhir pada ${new Date().toLocaleString("id-ID")}`;
+                const timestamp = document.createElement("div");
+                timestamp.classList.add("timestamp");
+                timestamp.textContent = `📅 Dibaca sampai akhir pada ${new Date().toLocaleString("id-ID")}`;
 
-            const navDiv = document.createElement("div");
-            navDiv.classList.add("nav-buttons");
+                const navDiv = document.createElement("div");
+                navDiv.classList.add("nav-buttons");
 
-            const backBtn = document.createElement("button");
-            backBtn.classList.add("nav-btn");
-            backBtn.textContent = "🏠 Kembali ke Dashboard";
-            backBtn.onclick = () => {
-                finalPage.style.opacity = '0';
-                setTimeout(() => {
-                    finalPage.remove();
-                    gantiHalaman("dashboardSurat");
-                }, 400);
-            };
+                const backBtn = document.createElement("button");
+                backBtn.classList.add("nav-btn");
+                backBtn.textContent = "🏠 Kembali ke Dashboard";
+                backBtn.onclick = () => {
+                    finalPage.style.opacity = '0';
+                    finalPage.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        finalPage.remove();
+                        gantiHalaman("dashboardSurat");
+                    }, 400);
+                };
 
-            finalMessage.appendChild(finalTitle);
-            finalMessage.appendChild(finalText);
-            finalMessage.appendChild(loveNote);
-            navDiv.appendChild(backBtn);
+                finalMessage.appendChild(finalTitle);
+                finalMessage.appendChild(finalText);
+                finalMessage.appendChild(loveNote);
+                navDiv.appendChild(backBtn);
 
-            finalPage.appendChild(finalMessage);
-            finalPage.appendChild(timestamp);
-            finalPage.appendChild(navDiv);
+                finalPage.appendChild(finalMessage);
+                finalPage.appendChild(timestamp);
+                finalPage.appendChild(navDiv);
 
-            // Add photo gallery
-            const list = window.preloadedGaleri || [];
-            if (list.length) {
-                const gallery = document.createElement("div");
-                gallery.classList.add("photo-grid");
-                gallery.id = "photoGallery";
+                // Add photo gallery
+                const list = window.preloadedGaleri || [];
+                if (list.length) {
+                    const gallery = document.createElement("div");
+                    gallery.classList.add("photo-grid");
+                    gallery.id = "photoGallery";
 
-                const landscape = [], portrait = [];
-                let loaded = 0;
-                let total = list.length;
+                    const landscape = [], portrait = [];
+                    let loaded = 0;
+                    let total = list.length;
 
-                list.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
-                    img.onload = () => handleImage(src, img.naturalWidth, img.naturalHeight);
-                    img.onerror = () => handleImage(src, 0, 0);
-                });
+                    list.forEach(src => {
+                        const img = new Image();
+                        img.src = src;
+                        img.onload = () => handleImage(src, img.naturalWidth, img.naturalHeight);
+                        img.onerror = () => handleImage(src, 0, 0);
+                    });
 
-                function handleImage(src, w, h) {
-                    if (w > h * 1.2) {
-                        landscape.push(src);
-                    } else {
-                        portrait.push(src);
-                    }
+                    function handleImage(src, w, h) {
+                        if (w > h * 1.2) {
+                            landscape.push(src);
+                        } else {
+                            portrait.push(src);
+                        }
 
-                    loaded++;
-                    if (loaded === total) {
-                        const finalList = [...landscape, ...portrait];
-                        finalList.forEach(src => {
-                            const photoItem = document.createElement("div");
-                            photoItem.classList.add("photo-item");
-                            
-                            const img = document.createElement("img");
-                            img.src = src;
-                            img.loading = "lazy";
-                            img.onclick = () => openLightbox(src);
-                            
-                            photoItem.appendChild(img);
-                            gallery.appendChild(photoItem);
-                        });
+                        loaded++;
+                        if (loaded === total) {
+                            const finalList = [...landscape, ...portrait];
+                            finalList.forEach(src => {
+                                const photoItem = document.createElement("div");
+                                photoItem.classList.add("photo-item");
+                                
+                                const img = document.createElement("img");
+                                img.src = src;
+                                img.loading = "lazy";
+                                img.onclick = () => openLightbox(src);
+                                
+                                photoItem.appendChild(img);
+                                gallery.appendChild(photoItem);
+                            });
 
-                        finalPage.appendChild(gallery);
+                            finalPage.appendChild(gallery);
+                        }
                     }
                 }
-            }
 
-            container.appendChild(finalPage);
+                container.appendChild(finalPage);
+                
+                setTimeout(() => {
+                    finalPage.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    finalPage.style.opacity = '1';
+                    finalPage.style.transform = 'translateY(0)';
+                }, 50);
+            }, 400);
         }
 
         function openLightbox(src) {
